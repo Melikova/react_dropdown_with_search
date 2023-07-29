@@ -7,12 +7,12 @@ const Selector = () => {
     const [inputValue, setInputValue]=useState('');
     const [selected, setSelected]=useState('');
     const [open, setOpen]=useState(false);
+    console.log(open);
 
     useEffect(()=>{
         fetch('https://restcountries.com/v2/all?fields=name')
             .then(res=>res.json())
             .then(data=>{
-                console.log(data);
                 setCountries(data);
             });
     }, []);
@@ -29,7 +29,9 @@ const Selector = () => {
                 : 'Select Country'}
             <BiChevronDown size={20} className={`${open && 'rotate-180'}`}/>
         </div>
-        <ul className={`bg-white mt-2 overflow-y-auto max-h-60 ${open ? 'max-h-60' : 'max-h-0'}`}>
+        <ul 
+            className={`bg-white mt-2 overflow-y-auto 
+                ${open===true ? 'max-h-60' : 'max-h-0'}`}>
             <div className='flex items-center px-2 sticky top-0 bg-white'>
                 <AiOutlineSearch size={18}/>
                 <input 
